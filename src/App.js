@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
-
-
-//the good convention is to use component name, so Person
+import classes from './App.module.css';
 import Person from './Person/Person'
 class App extends Component {
   state = {
@@ -10,7 +7,7 @@ class App extends Component {
       {name:'maggie',age:'18'},
       {name:'maggie2',age:'181'},
       {name:'maggie3',age:'1811'},
-    ]
+    ],
   }
   switchNameHandler = newName =>{
     this.setState({
@@ -32,22 +29,14 @@ class App extends Component {
     })
   }
   render() {
-    const style = {
-      backgroundColor: "white",
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor:'pointer'
-    }
     return (
       /*this is jsx; get complied to line #14
       can't use class, becuz it is js, class is a reserved word in js;
       <h1><div>looks like html, but actually managed by react library*/
-      <div className="App"> 
+      <div className={classes.App}> 
         <h1> hi, Im a react app:)</h1>
         <p>this is working</p>
       <button 
-        style={style}
         onClick={()=> this.switchNameHandler('tom')}>switch name</button>
         <Person 
           name={this.state.persons[0].name} 
@@ -58,6 +47,7 @@ class App extends Component {
           click={this.switchNameHandler.bind(this,'tom!')}
           changed={this.nameChnagedHandler}>my hobby is playin w/ cats</Person>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+
       </div>
     );
     // return React.createElement('div',null,'h1','hii, Im a react app:)') //wont' work
