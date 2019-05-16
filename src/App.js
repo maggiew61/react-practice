@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.module.css';
 import Person from './Person/Person'
+import { isNullOrUndefined } from 'util';
 class App extends Component {
   state = {
     persons:[
@@ -8,6 +9,7 @@ class App extends Component {
       {name:'maggie2',age:'181'},
       {name:'maggie3',age:'1811'},
     ],
+    show:false
   }
   switchNameHandler = newName =>{
     this.setState({
@@ -28,12 +30,29 @@ class App extends Component {
       ]
     })
   }
+  toggle = () =>{
+    let foo = this.state.show
+    this.setState({
+      show: !foo
+    })
+  }
   render() {
+    let person = null
+    if(this.state.show){
+      person = (
+        <div>
+          <h1>title</h1>
+          <div>first</div>
+          <div>second</div>
+          <div>third</div>
+          <div>last</div>
+        </div>
+      )
+    }
     return (
-      /*this is jsx; get complied to line #14
-      can't use class, becuz it is js, class is a reserved word in js;
-      <h1><div>looks like html, but actually managed by react library*/
       <div className={classes.App}> 
+          <button onClick={this.toggle}>toggle</button>
+          {person}
         <h1> hi, Im a react app:)</h1>
         <p>this is working</p>
       <button 
